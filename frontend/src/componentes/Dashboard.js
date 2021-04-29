@@ -1,7 +1,20 @@
-import react from "react"
+import styled from "styled-components";
+import { FlexRow } from "../reusable-styled/flexConteiners";
 
-const Dashboard = () => <h1>
-    HI
-</h1>
+import Sidebar from "./SideBar";
+import Formulario from "./Fromulario";
 
-export default Dashboard
+import {Route} from "react-router-dom"
+
+
+const dashboard = () =>
+{
+    return <FlexRow>
+    <Sidebar/>
+        <Route path="/dashboard/crear">
+            <Formulario/>
+        </Route>
+</FlexRow>
+}
+
+export default dashboard
