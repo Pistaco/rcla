@@ -2,18 +2,29 @@ import styled from "styled-components";
 import { FlexRow } from "../reusable-styled/flexConteiners";
 
 import Sidebar from "./SideBar";
-import Formulario from "./Fromulario";
+
+import CrearPage from "./CrearPage/CrearPage";
+import ProductosPage from "./ProductosPage/ProductosPage"
 
 import {Route} from "react-router-dom"
 
+const StyleContent = styled.div`
+    width: 100%;
+`
 
 const dashboard = () =>
 {
     return <FlexRow>
     <Sidebar/>
-        <Route path="/dashboard/crear">
-            <Formulario/>
-        </Route>
+        <StyleContent>
+            <Route path="/dashboard/crear">
+                <CrearPage/>
+            </Route>
+
+            <Route path="/dashboard/productos">
+                <ProductosPage/>
+            </Route>
+        </StyleContent>
 </FlexRow>
 }
 

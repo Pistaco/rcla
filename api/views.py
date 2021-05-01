@@ -2,21 +2,22 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from productos.models import Producto, Categoria
 from productos.serializers import ProductosSerializer, CategoriaSerializer
-# Create your views here.
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 @api_view(["GET"])
 def index(request):
     api_urls = {
-        "List": "/list-productos/",
+        "List": "/list",
         "Detalle": "/detalle/<str:pk>",
-        "Crear_pruducto": "/producto-create/",
+        "Crear_pruducto": "/producto-create",
         "Eliminar_Producto": "/delete_producto/<str:pk>"
     }
     return Response(api_urls)
 
 
 @api_view(["POST"])
+@ensure_csrf_cookie
 def create_producto(requets):
     objeto = ProductosSerializer(data=requets.data)
     if objeto.is_valid():
@@ -26,9 +27,11 @@ def create_producto(requets):
 
 
 @api_view(["POST"])
+@ensure_csrf_cookie
 def delete_producto(requets, pk):
     objeto = Producto.objects.get(pk=pk)
     objeto.delete()
+    return Response("OK ")
 
 
 @api_view(["POST"])

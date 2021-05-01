@@ -19,3 +19,11 @@ export const FlexRow = styled.div`
   flex-direction: row;
 `
 
+export const FlexRowCenter = styled(FlexCenter)`
+    flex-direction: row;
+`
+
+export const FlexRowCenterSpaced = styled(FlexRowCenter)`
+    
+`
+

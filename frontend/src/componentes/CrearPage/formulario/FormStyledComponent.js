@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export default styled.div`
 .form-style-8{
-	width: 500px;
-	padding: 30px;
+	width: 100%;
+	padding: 80px;
 	background: #FFFFFF;
 	margin: 50px auto;
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
