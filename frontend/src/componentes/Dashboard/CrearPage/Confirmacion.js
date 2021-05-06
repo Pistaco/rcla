@@ -10,5 +10,4 @@ const Confirmacion = ({setConfirmacion}) =>
 
 
 
-
 export default Confirmacion

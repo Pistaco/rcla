@@ -7,13 +7,21 @@ import CrearPage from "./CrearPage/CrearPage";
 import ProductosPage from "./ProductosPage/ProductosPage"
 
 import {Route} from "react-router-dom"
+import {useState} from "react";
+import Login from "./login/Login";
 
 const StyleContent = styled.div`
     width: 100%;
 `
 
-const dashboard = () =>
+const Dashboard = () =>
 {
+    const [token, setToken] = useState(false)
+
+    if(!token) {
+        return <Login setToken={setToken}/>
+    }
+
     return <FlexRow>
     <Sidebar/>
         <StyleContent>
@@ -28,4 +36,4 @@ const dashboard = () =>
 </FlexRow>
 }
 
-export default dashboard
+export default Dashboard

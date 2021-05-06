@@ -27,7 +27,6 @@ const Item = props => (
 const SideBar = () => <StyleBar>
     <Item url="crear">Crear</Item>
     <Item url="productos">Productos</Item>
-    <Item>Categorias</Item>
 </StyleBar>
 
 export default SideBar

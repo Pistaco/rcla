@@ -59,9 +59,8 @@ const Table = () => {
 
 }
 
-const Row = ({id, producto, onDelete}) => {
-
-    return <tr>
+const Row = ({id, producto, onDelete}) => (
+    <tr>
         <td>{producto.nombre}</td>
         <td>{producto.precio}</td>
         <td>{producto.descripcion}</td>
@@ -73,6 +72,6 @@ const Row = ({id, producto, onDelete}) => {
             /button>
         </th>
     </tr>
-}
+)
 
 export default Table

@@ -1,5 +1,5 @@
 import Table from "./table"
-import SearchBox from "./search";
+import SearchBox from "./search/search";
 
 const ProductosPage = () => {
     return(

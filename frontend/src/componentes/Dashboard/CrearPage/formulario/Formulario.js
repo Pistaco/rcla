@@ -1,9 +1,6 @@
 import {useState} from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-
 import FormJSX from "./FormJSX";
-
+import DjangoAPIHandler from "../../../djangoAPIHandler";
 
 const Formulario = ({changeStateValidation}) => {
 
@@ -20,24 +17,16 @@ const Formulario = ({changeStateValidation}) => {
             [props.target.name]: props.target.value
         })
 
+    const createProductoBackEnd = () => DjangoAPIHandler.productos.createProducto(stateForm)
 
-    const handFormProcess = () => {
-        const response = sendTobackEnd()
-        response.then(changeStateValidation)
-    }
-
-    const sendTobackEnd = () => {
-        const url = "/api/producto-create"
-        const cookie = Cookies.get("csrftoken")
-        const confi = {
-            headers: {'X-CSRFToken': cookie}
-        }
-        return axios.post(url, stateForm, confi)
+    const submitToBackEndHandler = async () => {
+        await createProductoBackEnd()
+        changeStateValidation()
     }
 
     return <FormJSX
         logic={generalSetter}
-        submit={handFormProcess}
+        submit={submitToBackEndHandler}
         value={stateForm}
     />
 
