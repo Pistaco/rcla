@@ -1,51 +1,45 @@
 import react, {useState} from "react"
-import styled from "styled-components";
-import {FlexCenter} from "../../reusable-styled/flexConteiners";
-import fetchToDjoser from "./FetchToDjoser";
+import djangoAPIHandler from "../../djangoAPIHandler";
+import LoginJSX from "./LoginJSX";
 
-const StyledLogin = styled.div`
-    width: 100px;
-    height: 60px;
-`
 const Login = ({setToken}) => {
+
     const [loginState, setForm] = useState({
-        "username": "",
-        "password": "",
+        username: "",
+        password: "",
     })
 
+    const [error, setError] = useState(false)
+
     const setGeneral = opcion => props => setForm({...loginState, [opcion]: props.target.value})
-    const setUserName = setGeneral("username")
-    const setPassword = setGeneral("password")
+
+    const setters = {
+        username: setGeneral("username"),
+        password: setGeneral("password")
+    }
 
     const handlerFetch = () => {
-        const axiosRequest = fetchToDjoser(loginState)
-        axiosRequest.then(
-            handToken
-        ).catch(value => console.log("cuek"))
+        djangoRequestLogin()
+            .then(handToken)
+            .catch(handError)
+    }
+
+    const djangoRequestLogin = () => djangoAPIHandler.auth.login(loginState)
+
+    const handError = error => {
+        setError(true)
     }
     const handToken = data => {
-        setToken(data.data)
+        setToken(data)
     }
-    return <FlexCenter>
-        <StyledLogin>
-            <label>
-                <p>Usuario</p>
-                <input data-testid="usuario"  type="text" onChange={setUserName} value={loginState.username}/>
-            </label>
-            <label>
-                <p>Contraseña</p>
-                <input data-testid="password" type="password" onChange={setPassword} value={loginState.password} />
-            </label>
-            <div>
-                <button  onClick={handlerFetch}>Submit</button>
-            </div>
-        </StyledLogin>
-    </FlexCenter>
-}
 
-const LoginForm = () => {
+    return <LoginJSX
+        handlerFetch={handlerFetch}
+        error={error}
+        setters={setters}
+        loginState={loginState}
+    />
 
 }
-
 
 export default Login

@@ -1,77 +1,30 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-import styled,{css} from "styled-components";
+import djangoAPIHandler from "../../djangoAPIHandler";
+import TablaJsx from "./tableJsx";
 
-const StyledTable = styled.table`
-    width: 100%;
-    background-color: #FFFFFF;
-    border-collapse: collapse;
-    border-width: 2px;
-    border-color: #7ea8f8;
-    border-style: solid;
-    color: #000000;
-`
 
 const Table = () => {
 
     const [lista, SetLista] = useState([])
 
-    const requestApi = () => axios.get("/api/list").then(
-        value => SetLista(value.data)
-    )
+    const requestApi = () => djangoAPIHandler.productos.allProductos().then(SetLista)
 
     const onDelete = id => {
         const deleteFromList = () => SetLista(lista.filter(value => value.id !== id))
-        const deleteFromBackEnd = () => {
-            const url = "/api/producto-delete/" + id
-            console.log(url)
-            const cookie = Cookies.get("csrftoken")
-            const config = {
-                headers: {'X-CSRFToken': cookie}
-            }
-            axios.post(url, {}, config)
-        }
+        const deleteFromBackEnd = () => djangoAPIHandler.productos.deleteProducto(id)
         deleteFromList()
         deleteFromBackEnd()
     }
 
     useEffect(requestApi, [])
-    useEffect(() => console.log(lista))
-    return (
-        <table className="table">
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripcion</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-                lista.map(value => <Row id={value.id} onDelete={onDelete} producto={value}/>)
-            }
-            </tbody>
 
-        </table>
+    return (
+        <TablaJsx
+            lista={lista}
+            onDelete={onDelete}
+        />
     )
 
 }
-
-const Row = ({id, producto, onDelete}) => (
-    <tr>
-        <td>{producto.nombre}</td>
-        <td>{producto.precio}</td>
-        <td>{producto.descripcion}</td>
-        <th>
-            <button onClick={() => onDelete(id)}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash2-fill" viewBox="0 0 16 16">
-                    <path d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"/>
-                </svg><
-            /button>
-        </th>
-    </tr>
-)
 
 export default Table

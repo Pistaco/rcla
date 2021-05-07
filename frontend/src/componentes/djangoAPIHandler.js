@@ -11,14 +11,14 @@ class djangoAPIHandler {
 
 class ProductosAPIHandler {
     createProducto(data) {
-        const axiosPost = genericPost("/api/create-producto")
+        const axiosPost = genericPost("/api/producto-create")
         return axiosPost(data)
     }
 
     deleteProducto(id) {
-        const url = `/api/delete-producto/${id}`
+        const url = `/api/producto-delete/${id}`
         const axiosPost = genericPost(url)
-        return axiosPost({})
+        axiosPost({}).catch(console.log)
     }
 
     allProductos() {
@@ -28,8 +28,8 @@ class ProductosAPIHandler {
 
 class AuthTokenHandler {
     constructor() {
-        this.path_login = "/auth/login"
-        this.path_logout = "/auth/logout"
+        this.path_login = "/auth/token/login"
+        this.path_logout = "/auth/token/logout"
     }
 
     login(data) {
@@ -38,16 +38,17 @@ class AuthTokenHandler {
     }
 
     logout() {
-        return genericGet(this.path_logout)
+        return genericPost(this.path_logout)({})
     }
 }
 
+
 const genericPost = url => data => {
-    const cookie = Cookie.getCookie("crsftoken")
-    const configuration = {
+    const cookie = Cookie.get("csrftoken")
+    const confi = {
         headers: {'X-CSRFToken': cookie}
     }
-    axios.post(url, data, configuration)
+    return axios.post(url, data, confi).then(value => value.data)
 }
 
 const genericGet = url => axios.get(url).then(value => value.data)
