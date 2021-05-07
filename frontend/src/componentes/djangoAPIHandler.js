@@ -21,6 +21,11 @@ class ProductosAPIHandler {
         axiosPost({}).catch(console.log)
     }
 
+    searchProducto(search) {
+        const url = `/api/producto-search/${search}`
+        return genericGet(url)
+    }
+
     allProductos() {
         return genericGet("/api/list")
     }

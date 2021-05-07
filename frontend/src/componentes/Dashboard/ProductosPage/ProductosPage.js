@@ -1,12 +1,16 @@
 import Table from "./table"
 import SearchBox from "./search/search";
+import {useState} from "react";
+import djangoAPIHandler from "../../djangoAPIHandler";
 
 const ProductosPage = () => {
+    const [lista, SetLista] = useState([])
+    const requestApi = () => djangoAPIHandler.productos.allProductos().then(SetLista)
+
     return(
         <>
-
-            <SearchBox onSubmit={() => console.log("uwu")}/>
-            <Table/>
+            <SearchBox requestApi={requestApi}  setLista={SetLista} />
+            <Table requestApi={requestApi} lista={lista} SetLista={SetLista}/>
         </>
     )
 }

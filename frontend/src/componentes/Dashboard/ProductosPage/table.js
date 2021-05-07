@@ -3,11 +3,8 @@ import djangoAPIHandler from "../../djangoAPIHandler";
 import TablaJsx from "./tableJsx";
 
 
-const Table = () => {
+const Table = ({lista, SetLista, requestApi}) => {
 
-    const [lista, SetLista] = useState([])
-
-    const requestApi = () => djangoAPIHandler.productos.allProductos().then(SetLista)
 
     const onDelete = id => {
         const deleteFromList = () => SetLista(lista.filter(value => value.id !== id))
