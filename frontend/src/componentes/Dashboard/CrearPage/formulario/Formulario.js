@@ -9,6 +9,7 @@ const Formulario = ({changeStateValidation}) => {
         precio:"",
         categoria:"",
         descripcion:"",
+        img: ""
     })
 
 
@@ -25,10 +26,13 @@ const Formulario = ({changeStateValidation}) => {
         changeStateValidation()
     }
 
+    const setImage = e => setStateForm({...stateForm, img: e.target.files[0]})
+
     return <FormJSX
         logic={generalSetter}
         submit={submitToBackEndHandler}
         value={stateForm}
+        setImage={setImage}
     />
 
 }

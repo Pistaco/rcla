@@ -14,7 +14,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField(max_length=200)
     categoria = models.TextField(max_length=50, default="")
-    img = models.ImageField(upload_to="media")
+    img = models.ImageField(upload_to="media", blank=True, null=True)
     precio = models.IntegerField()
 
     def __str__(self):

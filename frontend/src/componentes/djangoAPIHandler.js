@@ -12,7 +12,8 @@ class djangoAPIHandler {
 class ProductosAPIHandler {
     createProducto(data) {
         const axiosPost = genericPost("/api/producto-create")
-        return axiosPost(data)
+        const form =  createForm(data)
+        return axiosPost(form)
     }
 
     deleteProducto(id) {
@@ -47,6 +48,15 @@ class AuthTokenHandler {
     }
 }
 
+const createForm = data => {
+    const datosToDjangoForm = new FormData
+    datosToDjangoForm.append("nombre", data.nombre)
+    datosToDjangoForm.append("precio", data.precio)
+    datosToDjangoForm.append("descripcion", data.descripcion)
+    datosToDjangoForm.append("categoria", data.categoria)
+    datosToDjangoForm.append("img", data.img, data.img.name)
+    return datosToDjangoForm
+}
 
 const genericPost = url => data => {
     const cookie = Cookie.get("csrftoken")

@@ -24,7 +24,8 @@ def create_producto(requets):
     if objeto.is_valid():
         objeto.save()
         return Response("OK")
-    return Response("NOT")
+    return Response("NOT", status=401)
+
 
 
 @api_view(["POST"])
@@ -32,7 +33,7 @@ def create_producto(requets):
 def delete_producto(requets, pk):
     objeto = Producto.objects.get(pk=pk)
     objeto.delete()
-    return Response("OK ")
+    return Response("OK")
 
 
 @api_view(["POST"])
