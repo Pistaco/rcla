@@ -22,17 +22,17 @@ const SearchBox = ({setLista, requestApi}) => {
             .then(value => setLista(value))
     }
 
-    const checkIfWhiteSpace = () => input === ""
+    const checkIfWhiteSpace = () => input === "" || input === undefined
 
     useEffect(refreshTable, [input])
 
     return (
-        <form  action="" className="search-bar">
-            <input type="search" value={input} onChange={onChange} name="search" pattern=".*\S.*" required/>
-            <button className="search-btn" type="submit">
+        <div className="search-bar">
+            <input type="text" value={input} onChange={onChange} name="search" pattern=".*\S.*" required/>
+            <button className="search-btn" >
                 <span>Search</span>
             </button>
-        </form>
+        </div>
     )
 }
 export default SearchBox

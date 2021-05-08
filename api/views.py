@@ -11,7 +11,8 @@ def index(request):
         "List": "/list",
         "Detalle": "/detalle/<str:pk>",
         "Crear_pruducto": "/producto-create",
-        "Eliminar_Producto": "/delete_producto/<str:pk>"
+        "Eliminar_Producto": "/producto-delete/<str:pk>",
+        "Buscar_Producto": "/producto-search/<str:search>"
     }
     return Response(api_urls)
 
@@ -50,3 +51,11 @@ def lista_productos(requets):
     serializado = ProductosSerializer(data=objetos, many=True)
     serializado.is_valid()
     return Response(serializado.data)
+
+
+@api_view(["GET"])
+def search_box(request, search):
+    lista = Producto.objects.filter(nombre__startswith=search)
+    lista_serializada = ProductosSerializer(data=lista, many=True)
+    lista_serializada.is_valid()
+    return Response(lista_serializada.data)

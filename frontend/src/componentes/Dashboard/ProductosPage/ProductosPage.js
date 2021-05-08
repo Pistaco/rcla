@@ -10,7 +10,7 @@ const ProductosPage = () => {
     return(
         <>
             <SearchBox requestApi={requestApi}  setLista={SetLista} />
-            <Table requestApi={requestApi} lista={lista} SetLista={SetLista}/>
+            <Table  lista={lista} SetLista={SetLista}/>
         </>
     )
 }

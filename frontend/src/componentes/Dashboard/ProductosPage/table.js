@@ -3,8 +3,7 @@ import djangoAPIHandler from "../../djangoAPIHandler";
 import TablaJsx from "./tableJsx";
 
 
-const Table = ({lista, SetLista, requestApi}) => {
-
+const Table = ({lista, SetLista}) => {
 
     const onDelete = id => {
         const deleteFromList = () => SetLista(lista.filter(value => value.id !== id))
@@ -13,7 +12,6 @@ const Table = ({lista, SetLista, requestApi}) => {
         deleteFromBackEnd()
     }
 
-    useEffect(requestApi, [])
 
     return (
         <TablaJsx

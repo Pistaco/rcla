@@ -7,6 +7,7 @@ const Formulario = ({changeStateValidation}) => {
     const [stateForm, setStateForm] = useState({
         nombre:"",
         precio:"",
+        categoria:"",
         descripcion:"",
     })
 

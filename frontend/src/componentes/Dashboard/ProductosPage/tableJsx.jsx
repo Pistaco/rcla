@@ -4,6 +4,7 @@ const  TablaJsx = ({lista, onDelete}) => <table className="table">
     <tr>
         <th>Nombre</th>
         <th>Precio</th>
+        <th>Categoria</th>
         <th>Descripcion</th>
         <th>Acciones</th>
     </tr>
@@ -20,6 +21,7 @@ const Row = ({id, producto, onDelete}) => (
     <tr>
         <td>{producto.nombre}</td>
         <td>{producto.precio}</td>
+        <td>{producto.categoria}</td>
         <td>{producto.descripcion}</td>
         <th>
             <button onClick={() => onDelete(id)}>
