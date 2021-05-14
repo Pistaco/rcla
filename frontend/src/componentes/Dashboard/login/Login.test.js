@@ -1,7 +1,8 @@
+import react from "react";
+
 import {BuildLogin, ManipulateForm} from "./LoginTestHelpers";
 import {cleanup, render} from "@testing-library/react";
 import "@testing-library/jest-dom"
-import Login from "./LoginJsx";
 
 let buildhelper = new BuildLogin()
 let manipulateHelper;
@@ -30,9 +31,6 @@ describe("LoginThings", () => {
         buildapp()
         buildform()
         pressTheBotton()
-    })
-    it("build2", () => {
-        render(<Login/>)
     })
 })
 

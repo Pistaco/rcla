@@ -23,7 +23,11 @@ export const FlexRowCenter = styled(FlexCenter)`
     flex-direction: row;
 `
 
-export const FlexRowCenterSpaced = styled(FlexRowCenter)`
-    
+export const FlexRowSpacedBetween = styled(FlexRow)`
+    justify-content: space-between;
+`
+
+export const FlexRowSpacedEvenly = styled(FlexRow)`
+   justify-content: space-evenly; 
 `
 
