@@ -27,7 +27,6 @@ def create_producto(requets):
     return Response("NOT", status=401)
 
 
-
 @api_view(["POST"])
 @ensure_csrf_cookie
 def delete_producto(requets, pk):

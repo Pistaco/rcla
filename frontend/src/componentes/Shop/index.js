@@ -1,8 +1,11 @@
 import Catalogo from "./Catalogo/Catalogo";
+import Banner from "./Banner/Banner"
+import Footer from "./Footer"
 const Shop = () => (
     <>
-        <h1>BIENVENIOS EL HIMALAYA, helado?</h1>
+        <Banner/>
         <Catalogo/>
+        <Footer/>
     </>
 )
 

@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import djangoAPIHandler from "../../djangoAPIHandler";
 import CatalogoJsx from "./CatalogoJsx";
 
-
 const Catalogo = () => {
     const [lista, setLista] = useState([])
 
