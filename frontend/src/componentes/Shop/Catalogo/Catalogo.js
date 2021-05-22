@@ -8,22 +8,31 @@ import Pagination from "./Pagination";
 
 const Catalogo = () => {
     const [lista, setLista] = useState([])
+    const [listaProcesada, setListaProcesada] = useState([])
     const [maxPages, setMax] = useState(0)
-    const [numeroPagina, setNumeroPagina] = useState(0)
-
 
     const setListFromDjangoData = () => requestDataDjango()
         .then(setLista)
         .catch(console.log)
 
+    const setMaxPagesEffect = () => setMax(listaProcesada.length)
     const requestDataDjango = () => djangoAPIHandler.productos.allProductos()
 
     useEffect(setListFromDjangoData, [])
+    useEffect(setMaxPagesEffect, [listaProcesada])
 
     return (
         <>
-            <ListaDePages lista={lista}  setMax={setMax} setLista={setLista}/>
-            <Pagination number={maxPages}/>
+            <ListaDePages
+                path="/Catalogo"
+                lista={lista}
+                listaProcesada={listaProcesada}
+                setListaProcesada={setListaProcesada}/>
+
+            <Pagination
+                path="/Catalogo"
+                number={maxPages}
+            />
         </>
     )
 }

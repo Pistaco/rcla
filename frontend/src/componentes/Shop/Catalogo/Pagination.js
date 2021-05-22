@@ -1,6 +1,6 @@
 import {FlexCenter} from "../../reusable-styled/flexConteiners";
 import {Link} from "react-router-dom"
-const Pagination = ({number}) => (
+const Pagination = ({number, path}) => (
     <FlexCenter style={{height: "100px"}}>
       <nav aria-label="Page navigation example">
         <ul className="pagination">
@@ -12,7 +12,7 @@ const Pagination = ({number}) => (
           </li>
           {
             [...Array( number).keys()].map(value =>
-                    <Link to={"/" + value}>
+                    <Link to={`${path}/${value}`}>
                       <li className="page-item">
                         <a className="page-link" href="#" aria-label="Next">{value}</a>
                       </li>

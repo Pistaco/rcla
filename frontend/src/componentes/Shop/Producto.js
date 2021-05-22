@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import imageProducto from "./../../static/dummy-chronograph-watch-500x500.jpg"
+import {useContext} from "react";
+
+import {Context} from "./Carrito";
 
 const StyleProducto = styled.div`
     display: grid;
@@ -26,18 +29,24 @@ const Precios = styled.div`
 
 `
 
-const Producto = ({producto, id}) => (
-    <StyleProducto id={id}>
-        <Content>
-            <img style={{width: "100%"}} src={imageProducto} alt={"dummy"}/>
-        </Content>
-        <PrecioSpace>
-            <NombreProducto> {producto.nombre}</NombreProducto>
-            <Precios>
-                <p>{producto.precio}</p>
-            </Precios>
-        </PrecioSpace>
-    </StyleProducto>
-)
+const Producto = ({producto, id}) => {
+    const {addToCarrito, deleteFromCart} = useContext(Context)
+
+    return (
+        <StyleProducto id={id}>
+            <Content>
+                <img style={{width: "100%"}} src={imageProducto} alt={"dummy"}/>
+            </Content>
+            <PrecioSpace>
+                <NombreProducto> {producto.nombre}</NombreProducto>
+                <Precios>
+                    <p>{producto.precio}</p>
+                </Precios>
+            </PrecioSpace>
+            <input type="button" value="Click me" onClick={() => addToCarrito(producto)}/>
+            <input type="button" value="Delete" onClick={() => deleteFromCart(id)}/>
+        </StyleProducto>
+    )
+}
 
 export default Producto
