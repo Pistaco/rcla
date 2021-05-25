@@ -1,42 +1,66 @@
-import {useState, createContext, useEffect} from "react";
-
+import {useState, createContext} from "react";
 export const Context = createContext()
 const { Provider } = Context
+
+const tracer = label => value => {
+    console.log(`${label} : ${value}`)
+    return value
+}
+
+const tracerTable = label => lista => {
+    console.log(label)
+    console.table(lista)
+    return lista
+}
 
 const CarritoProvider = ({children}) => {
     const [carritoData, setCarritoData] = useState([])
 
-    const deleteFromCart = id => setCarritoData(carritoData.filter(value => value.id !== id))
-
-    const addToCarrito = value => {
-        const producto = getOrCreate(value)
-        console.log(producto)
-        const productoForCarrito = subirCantidad(createProductoForCarrito(producto))
-        console.log(productoForCarrito)
-        setCarritoData([...carritoData, productoForCarrito])
+    const listaManager =  {
+        checkIfExist: id => carritoData.some(value => value.id === id),
+        add: producto => setCarritoData([...carritoData, producto]),
+        delete: producto => setCarritoData(carritoData.filter(value => value.id !== producto.id))
     }
 
-    const getOrCreate = producto => {
-        const {id} = producto
-        if (checkIfProductExistInCarrito(id)) {
-            const resultado = filterForIdInCarrito(id)
-            return resultado.pop()
+    const addToCarrito = producto => {
+        createOrSum(producto)
+        tracerTable("Lista")(carritoData)
+    }
+    const deleteFromCart = id => {
+        deleteOrReduce(id)
+    }
+
+    const createOrSum = producto => generalExistOrDo(sumProducto)(listaManager.add)(producto)
+    const deleteOrReduce = () => generalExistOrDo(reduceProducto)(listaManager.delete)
+
+    const sumProducto = producto => {
+        const lista = mapToTheListId(sumOrReduce(1))
+        const resultado = lista(producto)
+        tracerTable("A")({
+            cantidad: 3
+        })
+        return resultado
+    }
+    const reduceProducto = () => mapToTheListId(sumOrReduce(-1))
+
+    const mapToTheListId = funcion => producto => carritoData.map(value =>
+        value.id === producto.id ?
+            funcion(value) :
+            value
+    )
+
+    const sumOrReduce = numero => value => ({
+        ...value,
+        cantidad: value.cantidad + numero
+    })
+
+    const generalExistOrDo = trueAlternative => falseAlternative => parametro => {
+        const {id} = parametro
+        if (listaManager.checkIfExist(id)) {
+            trueAlternative(parametro)
         }
-        return createProductoForCarrito(producto)
+        falseAlternative(parametro)
     }
-
-    const createProductoForCarrito = producto => ({
-        ...producto,
-        cantidad: 0
-    })
-    const subirCantidad = producto => ({
-        ...producto,
-        cantidad: producto.cantidad + 1
-    })
-
-    const checkIfProductExistInCarrito = id => 1 === filterForIdInCarrito(id).length
-    const filterForIdInCarrito = id => carritoData.filter(value => value.id === id)
-
 
     return (
         <Provider value={{addToCarrito, deleteFromCart}}>

@@ -3,9 +3,9 @@ import CarritoProvider from "../Carrito";
 import {listaDeProductos} from "./productoDummy";
 import Producto from "../Producto";
 
-const renderProductoSystem = () => render(
+const renderProductoSystem = (lista = listaDeProductos)  => render(
     <CarritoProvider>
-        { listaDeProductos.map(value => <Producto producto={value} id={value.id}/>)   }
+        { lista.map(value => <Producto producto={value} id={value.id}/>)   }
     </CarritoProvider>
 )
 

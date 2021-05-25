@@ -1,12 +1,15 @@
+
 export const productoDommy = {
-    nombre: "PC",
+    nombre: "Producto x",
     precio: 100,
-    descripcion: "UWU"
+    descripcion: "UWU",
 }
 
-export const listaDeProductos = [
+const listaDeProductos = [
     productoDommy, productoDommy, productoDommy,
     productoDommy, productoDommy, productoDommy,
     productoDommy, productoDommy, productoDommy,
     productoDommy,
-]
+].map((value, index) => ({...value, id: index, }))
+
+export {listaDeProductos}
