@@ -1,17 +1,8 @@
 import {useState, createContext} from "react";
+import {tracerTable} from "../../../utils";
+
 export const Context = createContext()
 const { Provider } = Context
-
-const tracer = label => value => {
-    console.log(`${label} : ${value}`)
-    return value
-}
-
-const tracerTable = label => lista => {
-    console.log(label)
-    console.table(lista)
-    return lista
-}
 
 const CarritoProvider = ({children}) => {
     const [carritoData, setCarritoData] = useState([])
@@ -21,6 +12,7 @@ const CarritoProvider = ({children}) => {
         add: producto => setCarritoData([...carritoData, producto]),
         delete: producto => setCarritoData(carritoData.filter(value => value.id !== producto.id))
     }
+
 
     const addToCarrito = producto => {
         createOrSum(producto)
@@ -58,8 +50,9 @@ const CarritoProvider = ({children}) => {
         const {id} = parametro
         if (listaManager.checkIfExist(id)) {
             trueAlternative(parametro)
+        } else {
+            falseAlternative(parametro)
         }
-        falseAlternative(parametro)
     }
 
     return (
