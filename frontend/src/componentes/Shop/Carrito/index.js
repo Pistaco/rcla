@@ -38,7 +38,7 @@ const CarritoProvider = ({children}) => {
         cantidad: producto.cantidad + numero
     })
     return (
-        <Provider value={{addToCarrito, deleteFromCart}}>
+        <Provider value={{addToCarrito, deleteFromCart, carritoData}}>
             {children}
         </Provider>
     )
