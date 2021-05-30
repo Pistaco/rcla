@@ -2,7 +2,7 @@ import styled from "styled-components";
 import imageProducto from "./../../static/dummy-chronograph-watch-500x500.jpg"
 import {useContext} from "react";
 
-import {Context} from "./Carrito";
+import {ContextMethods} from "./Carrito";
 
 const StyleProducto = styled.div`
     display: grid;
@@ -30,7 +30,7 @@ const Precios = styled.div`
 `
 
 const Producto = ({producto, id}) => {
-    const {addToCarrito, deleteFromCart} = useContext(Context)
+    const {addToCarrito, deleteFromCart} = useContext(ContextMethods)
 
     return (
         <StyleProducto id={id}>
@@ -44,7 +44,7 @@ const Producto = ({producto, id}) => {
                 </Precios>
             </PrecioSpace>
             <input type="button" value="Click me" onClick={() => addToCarrito(producto)}/>
-            <input type="button" value="Delete" onClick={() => deleteFromCart(id)}/>
+            <input type="button" value="Delete" onClick={() => deleteFromCart(producto)}/>
         </StyleProducto>
     )
 }

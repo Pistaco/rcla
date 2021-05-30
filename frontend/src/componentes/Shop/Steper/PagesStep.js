@@ -1,15 +1,14 @@
-import CarritoTable from "../Carrito/CarritoTable";
+import CarritoStep from "../Carrito/CarritoStep";
 import styled from "styled-components";
 
 const Style = styled.div`
   grid-column: 1 / 3;
-  
-  background-color: cyan;
 `
+
 const PagesStep = ({step}) => {
     switch (step){
         case 1:
-            return <CarritoTable/>
+            return <CarritoStep/>
         case 2:
             return "2"
         case 3:

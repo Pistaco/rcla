@@ -10,10 +10,11 @@ const StyleSteper = styled.div`
     grid-template-rows: 1fr 2fr ;
     grid-template-columns: 1fr 1fr;
   
-    padding: 30px;
     width: 90%;
     height: 90%;
-    background-color: bisque;
+    padding: 30px;
+    border-radius: 50px;
+    background-color: #D8D8D8;
 `
 const Steper = () => {
     const [activeStep, setActiveStep] = useState(1)

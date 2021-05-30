@@ -24,7 +24,7 @@ def create_producto(requets):
     if objeto.is_valid():
         objeto.save()
         return Response("OK")
-    return Response("NOT", status=401)
+    return Response("Not", status=403)
 
 
 @api_view(["POST"])
@@ -37,7 +37,11 @@ def delete_producto(requets, pk):
 
 @api_view(["POST"])
 def create_categoria(requets):
-    pass
+    objeto = CategoriaSerializer(data=requets.data)
+    if objeto.is_valid():
+        objeto.save()
+        return Response("OK")
+    return Response("Not", status=403)
 
 
 @api_view(["POST"])

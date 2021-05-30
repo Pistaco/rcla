@@ -4,9 +4,10 @@ import djangoAPIHandler from "../../djangoAPIHandler";
 
 import ListaDePages from "./ListaDePages";
 import Pagination from "./Pagination";
+import MensajeError from "./MensajeError";
 
 
-const Catalogo = () => {
+const Catalogo = ({requestDataDjango}) => {
     const [lista, setLista] = useState([])
     const [listaProcesada, setListaProcesada] = useState([])
     const [maxPages, setMax] = useState(0)
@@ -16,13 +17,15 @@ const Catalogo = () => {
         .catch(console.log)
 
     const setMaxPagesEffect = () => setMax(listaProcesada.length)
-    const requestDataDjango = () => djangoAPIHandler.productos.allProductos()
 
     useEffect(setListFromDjangoData, [])
     useEffect(setMaxPagesEffect, [listaProcesada])
 
     return (
         <>
+            {lista.length ? null : <h1>
+                <MensajeError/>
+            </h1>}
             <ListaDePages
                 path="/Catalogo"
                 lista={lista}

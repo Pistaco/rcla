@@ -6,6 +6,7 @@ class djangoAPIHandler {
     constructor() {
         this.productos = new ProductosAPIHandler()
         this.auth =  new AuthTokenHandler()
+        this.categorias = new CategoriaHandler()
     }
 }
 
@@ -48,12 +49,23 @@ class AuthTokenHandler {
     }
 }
 
+class CategoriaHandler {
+    constructor() {
+        this.path_create = "/api/categoria-create"
+    }
+
+    create(data) {
+        const postAxios = genericPost(this.path_create)
+        return postAxios(data)
+    }
+}
+
 const createForm = data => {
     const datosToDjangoForm = new FormData
-    datosToDjangoForm.append("nombre", data.nombre)
+    datosToDjangoForm.append("nombre", data.nombre.toLowerCase())
     datosToDjangoForm.append("precio", data.precio)
     datosToDjangoForm.append("descripcion", data.descripcion)
-    datosToDjangoForm.append("categoria", data.categoria)
+    datosToDjangoForm.append("categoria", data.categoria.toLowerCase())
     datosToDjangoForm.append("img", data.img, data.img.name)
     return datosToDjangoForm
 }

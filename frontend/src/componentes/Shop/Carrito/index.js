@@ -1,16 +1,17 @@
 import {useState, createContext} from "react";
 
-export const Context = createContext()
-const { Provider } = Context
+export const ContextMethods = createContext()
+export const ContextData = createContext()
 
 const CarritoProvider = ({children}) => {
     const [carritoData, setCarritoData] = useState([])
 
     const listaManager =  {
         checkIfExist: id => carritoData.some(value => value.id === id),
-        add: producto => setCarritoData([...carritoData, {...producto, cantidad: 0}]),
+        add: producto => setCarritoData([...carritoData, {...producto, cantidad: 1}]),
         delete: producto => setCarritoData(carritoData.filter(value => value.id !== producto.id))
     }
+
 
     const addToCarrito = producto => listaManager.checkIfExist(producto.id) ?
         sumProductoInList(producto):
@@ -38,9 +39,11 @@ const CarritoProvider = ({children}) => {
         cantidad: producto.cantidad + numero
     })
     return (
-        <Provider value={{addToCarrito, deleteFromCart, carritoData}}>
-            {children}
-        </Provider>
+        <ContextData.Provider value={carritoData}>
+            <ContextMethods.Provider value={{addToCarrito, deleteFromCart, carritoData}}>
+                {children}
+            </ContextMethods.Provider>
+        </ContextData.Provider>
     )
 }
 

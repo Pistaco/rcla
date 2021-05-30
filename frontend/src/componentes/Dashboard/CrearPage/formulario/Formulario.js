@@ -20,6 +20,7 @@ const Formulario = ({changeStateValidation}) => {
         })
 
     const createProductoBackEnd = () => DjangoAPIHandler.productos.createProducto(stateForm)
+    const createCategoriaBackEnd = () => DjangoAPIHandler.categorias.create({nombre: stateForm.categoria.toLowerCase()})
 
     const submitToBackEndHandler = async () => {
         await createProductoBackEnd()
