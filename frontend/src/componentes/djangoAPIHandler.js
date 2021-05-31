@@ -58,6 +58,11 @@ class CategoriaHandler {
         const postAxios = genericPost(this.path_create)
         return postAxios(data)
     }
+
+    getProductosByCategoria(data) {
+        const url = `/api/categoria-search/${data}`
+        return genericGet(url)
+    }
 }
 
 const createForm = data => {

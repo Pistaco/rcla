@@ -33,6 +33,7 @@ const ItemStyle = styled(FlexCenter)`
 const ItemDrom = styled(FlexColumnCenter)`
     width: 100%;
     position: absolute;
+    z-index: 1;
     top: 90px;
     border-radius: 0 0 30px 30px;
     background-color: #F5C646;

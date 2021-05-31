@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {useParams, useRouteMatch} from "react-router-dom";
 
 import djangoAPIHandler from "../../djangoAPIHandler";
 
@@ -7,10 +8,15 @@ import Pagination from "./Pagination";
 import MensajeError from "./MensajeError";
 
 
-const Catalogo = ({requestDataDjango}) => {
+const Catalogo = () => {
     const [lista, setLista] = useState([])
     const [listaProcesada, setListaProcesada] = useState([])
     const [maxPages, setMax] = useState(0)
+
+    let {categoria} = useParams()
+    let {url} = useRouteMatch()
+
+    const requestDataDjango = () => djangoAPIHandler.categorias.getProductosByCategoria(categoria)
 
     const setListFromDjangoData = () => requestDataDjango()
         .then(setLista)
@@ -18,22 +24,23 @@ const Catalogo = ({requestDataDjango}) => {
 
     const setMaxPagesEffect = () => setMax(listaProcesada.length)
 
-    useEffect(setListFromDjangoData, [])
+    useEffect(() => console.log(lista), [])
+    useEffect(setListFromDjangoData, [listaProcesada])
     useEffect(setMaxPagesEffect, [listaProcesada])
 
     return (
         <>
-            {lista.length ? null : <h1>
+            {lista.length ? null :
                 <MensajeError/>
-            </h1>}
+            }
             <ListaDePages
-                path="/Catalogo"
+                path={url}
                 lista={lista}
                 listaProcesada={listaProcesada}
                 setListaProcesada={setListaProcesada}/>
 
             <Pagination
-                path="/Catalogo"
+                path={url}
                 number={maxPages}
             />
         </>
