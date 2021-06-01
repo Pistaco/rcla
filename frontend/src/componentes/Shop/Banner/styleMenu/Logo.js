@@ -7,8 +7,8 @@ const LogoStyle = styled.div`
   grid-column: 1 / 2;
   grid-row: 1 / -1;
   justify-self: center;
-  width: 80%;
-  
+  align-self: center;
+  width: 100%;
 `
 
 const style = {

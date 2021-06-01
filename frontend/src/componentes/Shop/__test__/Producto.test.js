@@ -1,6 +1,6 @@
 import {cleanup, fireEvent, render} from "@testing-library/react";
 import CarritoProvider from "../Carrito";
-import Producto from "../Producto";
+import Producto from "../ProductoPage";
 import {productoDommy, listaDeProductos} from "./productoDummy";
 import renderProductoSystem from "./renderProductosSystem";
 

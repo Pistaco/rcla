@@ -3,6 +3,7 @@ import imageProducto from "./../../static/dummy-chronograph-watch-500x500.jpg"
 import {useContext} from "react";
 
 import {ContextMethods} from "./Carrito";
+import {Link} from "react-router-dom";
 
 const StyleProducto = styled.div`
     display: grid;
@@ -35,7 +36,9 @@ const Producto = ({producto, id}) => {
     return (
         <StyleProducto id={id}>
             <Content>
-                <img style={{width: "100%"}} src={imageProducto} alt={"dummy"}/>
+                <Link to={`/Producto/${id}`}>
+                    <img style={{width: "100%"}} src={imageProducto} alt={"dummy"}/>
+                </Link>
             </Content>
             <PrecioSpace>
                 <NombreProducto> {producto.nombre}</NombreProducto>

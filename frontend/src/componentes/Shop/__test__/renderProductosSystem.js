@@ -1,7 +1,7 @@
 import {render} from "@testing-library/react";
 import CarritoProvider from "../Carrito";
 import {listaDeProductos} from "./productoDummy";
-import Producto from "../Producto";
+import Producto from "../ProductoPage";
 
 const renderProductoSystem = (lista = listaDeProductos)  => render(
     <CarritoProvider>

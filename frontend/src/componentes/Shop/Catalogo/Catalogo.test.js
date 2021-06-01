@@ -2,7 +2,7 @@ import {cleanup, fireEvent, render} from "@testing-library/react";
 import "@testing-library/jest-dom"
 import "@testing-library/jest-dom/extend-expect"
 import Catalogo from "./Catalogo";
-import Producto from "../Producto";
+import Producto from "../ProductoPage";
 import CarritoProvider, { Context} from "../Carrito";
 
 

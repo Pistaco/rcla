@@ -23,6 +23,11 @@ class ProductosAPIHandler {
         axiosPost({}).catch(console.log)
     }
 
+    getById(id) {
+        const url = `/api/producto-get/${id}`
+        return genericGet(url)
+    }
+
     searchProducto(search) {
         const url = `/api/producto-search/${search}`
         return genericGet(url)

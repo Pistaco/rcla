@@ -1,5 +1,5 @@
 import Menu from "./Menu";
-import Categorias from "./Categorias";
+import Categorias from "./Categorias/Categorias";
 
 const Banner = () => (
     <>

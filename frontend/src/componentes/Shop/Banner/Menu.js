@@ -14,8 +14,12 @@ const StyledMenu = styled.div`
   grid-template-columns: 1fr 2fr .5fr;
   
   margin-top: 25px;
-  height: 30vh;
+  height: 300px;
   background-color: white;
+  
+  @media (max-width: 800px) {
+    height: 150px;
+  }
 `
 
 
