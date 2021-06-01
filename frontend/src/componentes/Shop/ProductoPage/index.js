@@ -19,7 +19,7 @@ const Descripcion = styled.div`
 
 const Titulo = styled.div`
     grid-column: 3 / 4;
-    font-size: 1rem;
+    font-size: 12vw;
 `
 const Precio = styled.div``
 
@@ -47,15 +47,24 @@ const PageProducto = () => {
     return (
         <Style>
             <Img><img src={imgDommy} style={{width: "100%"}} alt=""/></Img>
-            <Titulo>
-                {data.nombre}
-            </Titulo>
+            <TextoZone data={data}>
+
+            </TextoZone>
         </Style>
     )
 }
 
-const TextoZone = () => (
-    <h1>q</h1>
+const TextoZone = ({data}) => (
+    <>
+        <Titulo>
+            <p>
+                {data.nombre}
+            </p>
+        </Titulo>
+        <Descripcion>
+            {data.descripcion}
+        </Descripcion>
+    </>
 )
 
 export default PageProducto

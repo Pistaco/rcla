@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {FlexColumnCenter} from "../../../reusable-styled/flexConteiners";
 import {Link} from "react-router-dom";
 
-const ItemDrom = styled(FlexColumnCenter)`
+export const ItemDrom = styled(FlexColumnCenter)`
     position: absolute;
     width: 100%;
     z-index: 1;
