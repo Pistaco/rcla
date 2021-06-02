@@ -1,7 +1,13 @@
 import {FlexCenter} from "../../reusable-styled/flexConteiners";
 import {Link} from "react-router-dom"
+
+
+const style = {
+    marginTop: "6rem"
+}
+
 const Pagination = ({number, path}) => (
-    <FlexCenter style={{height: "100px"}}>
+    <FlexCenter style={style}>
       <nav aria-label="Page navigation example">
         <ul className="pagination">
           <li className="page-item">

@@ -1,10 +1,10 @@
-import Producto from "../Producto";
+import Producto from "../Producto/index";
 import {FlexColumn, FlexRowSpacedEvenly} from "../../reusable-styled/flexConteiners";
 import {Link} from "react-router-dom";
 
 
 
-const style = {marginTop: "3rem"}
+const style = {marginTop: "5rem"}
 
 const Jsx = ({lista}) => {
 

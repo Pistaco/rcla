@@ -11,15 +11,15 @@ const StyleSteper = styled.div`
     grid-template-columns: 1fr 1fr;
   
     width: 90%;
-    height: 90%;
+    min-height: 100vh;
     padding: 30px;
+    margin: 30px 0;
     border-radius: 50px;
     background-color: #D8D8D8;
 `
 const Steper = () => {
     const [activeStep, setActiveStep] = useState(1)
-    const styleForFlex = {height: "100vh"}
-    return <FlexCenter style={styleForFlex}>
+    return <FlexCenter>
         <StyleSteper>
             <SetDeBotones setActiveStep={setActiveStep}/>
             <PagesStep step={activeStep}/>

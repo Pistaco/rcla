@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import imageProducto from "./../../static/dummy-chronograph-watch-500x500.jpg"
+import imageProducto from "../../../static/dummy-chronograph-watch-500x500.jpg"
 import {useContext} from "react";
 
-import {ContextMethods} from "./Carrito";
+import {ContextMethods} from "../Carrito";
 import {Link} from "react-router-dom";
+import CarritoBtn from "./CarritoBtn";
+import {FlexCenter, FlexRow} from "../../reusable-styled/flexConteiners";
 
 const StyleProducto = styled.div`
     display: grid;
@@ -17,7 +19,7 @@ const Content = styled.div`
     border-bottom: 0;
 `
 
-const PrecioSpace = styled.div`
+const PrecioSpace = styled(FlexRow)`
     border: 1px solid #5a6268;
     padding-left: 10px;
 `
@@ -30,9 +32,9 @@ const Precios = styled.div`
 
 `
 
-const Producto = ({producto, id}) => {
-    const {addToCarrito, deleteFromCart} = useContext(ContextMethods)
 
+const Producto = ({producto, id}) => {
+    const {addToCarrito} = useContext(ContextMethods)
     return (
         <StyleProducto id={id}>
             <Content>
@@ -41,13 +43,16 @@ const Producto = ({producto, id}) => {
                 </Link>
             </Content>
             <PrecioSpace>
-                <NombreProducto> {producto.nombre}</NombreProducto>
-                <Precios>
-                    <p>{producto.precio}</p>
-                </Precios>
+                <div style={{width: "100%"}}>
+                    <NombreProducto> {producto.nombre}</NombreProducto>
+                    <Precios>
+                        <p>{producto.precio}</p>
+                    </Precios>
+                </div>
+                <FlexCenter style={{width: "60%"}}>
+                    <CarritoBtn onClick={() => addToCarrito(producto)}/>
+                </FlexCenter>
             </PrecioSpace>
-            <input type="button" value="Click me" onClick={() => addToCarrito(producto)}/>
-            <input type="button" value="Delete" onClick={() => deleteFromCart(producto)}/>
         </StyleProducto>
     )
 }

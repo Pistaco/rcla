@@ -3,14 +3,13 @@ import {FlexCenter, FlexRow} from "../../reusable-styled/flexConteiners";
 import {useContext} from "react";
 import {ContextMethods} from "./index";
 
-const StyleRow = styled(FlexRow)``
+const StyleRow = styled(FlexRow)`
+    margin-bottom: 10px;
+`
 
 const Item = styled(FlexCenter)`
-    flex: ${props => props.first ? "2" : "1"};
-    border: crimson solid 1px;
-    p {
-      font-size: ${props => props.principal ? "1rem" : "1.5rem"}
-    }
+  flex: ${props => props.first ? "2" : "1"};
+  font-size: ${props => props.principal ? "1rem" : "1.4rem"}
 `
 
 export const Row = ({data}) => {
