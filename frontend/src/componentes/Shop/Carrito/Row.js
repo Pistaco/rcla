@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {FlexCenter, FlexRow} from "../../reusable-styled/flexConteiners";
+import DeleteBoton from "./DeleteBoton";
 import {useContext} from "react";
 import {ContextMethods} from "./index";
 
@@ -29,7 +30,7 @@ export const Row = ({data}) => {
             <Item>
                 {calcularPrecio()}
             </Item>
-            <Item><button onClick={() => deleteFromCart(data)}>Delete</button></Item>
+            <Item><DeleteBoton onClick={() => deleteFromCart(data)}>Delete</DeleteBoton></Item>
         </StyleRow>
     )
 }

@@ -10,6 +10,7 @@ const StyleCarrito = styled.div`
     grid-template-rows: 1fr .05fr .15fr;
     grid-template-columns: 1fr;
     grid-column: 1 / 3;
+    grid-row: 3 / 4;
 `
 
 const CarritoStep = () => {

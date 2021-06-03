@@ -4,10 +4,11 @@ import styled from "styled-components";
 import PagesStep from "./PagesStep";
 import SetDeBotones from "./SetDeBotones";
 import {FlexCenter} from "../../reusable-styled/flexConteiners";
+import Paso from "./Paso";
 
 const StyleSteper = styled.div`
     display: grid;
-    grid-template-rows: 1fr 2fr ;
+    grid-template-rows: 1fr .1fr 2fr ;
     grid-template-columns: 1fr 1fr;
   
     width: 90%;
@@ -21,6 +22,7 @@ const Steper = () => {
     const [activeStep, setActiveStep] = useState(1)
     return <FlexCenter>
         <StyleSteper>
+            <Paso/>
             <SetDeBotones setActiveStep={setActiveStep}/>
             <PagesStep step={activeStep}/>
         </StyleSteper>
