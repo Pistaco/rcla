@@ -44,6 +44,14 @@ def create_categoria(requets):
     return Response("Not", status=403)
 
 
+@api_view(["GET"])
+def get_by_categoria(request, search):
+    lista = Producto.objects.filter(categoria__startswith=search)
+    serializada = ProductosSerializer(many=True, data=lista)
+    serializada.is_valid()
+    return Response(serializada.data)
+
+
 @api_view(["POST"])
 def delete_categoria(requets):
     pass
@@ -63,3 +71,10 @@ def search_box(request, search):
     lista_serializada = ProductosSerializer(data=lista, many=True)
     lista_serializada.is_valid()
     return Response(lista_serializada.data)
+
+
+@api_view(["GET"])
+def get_by_id(request, pk):
+    producto = Producto.objects.get(id=pk)
+    serializado = ProductosSerializer(producto)
+    return Response(serializado.data)
