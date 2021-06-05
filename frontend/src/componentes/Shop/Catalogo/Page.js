@@ -1,10 +1,15 @@
 import Producto from "../Producto/index";
 import {FlexColumn, FlexRowSpacedEvenly} from "../../reusable-styled/flexConteiners";
 import {Link} from "react-router-dom";
+import styled from "styled-components";
 
-
-
-const style = {marginTop: "5rem"}
+const StyleRow = styled(FlexRowSpacedEvenly)`
+    margin-top: 5rem;
+  
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
+`
 
 const Jsx = ({lista}) => {
 
@@ -20,12 +25,12 @@ const Jsx = ({lista}) => {
 
     return (
             <FlexColumn>
-                <FlexRowSpacedEvenly style={style}>
+                <StyleRow>
                     { row1Put() }
-                </FlexRowSpacedEvenly>
-                <FlexRowSpacedEvenly style={style}>
+                </StyleRow>
+                <StyleRow>
                     { row2Put() }
-                </FlexRowSpacedEvenly>
+                </StyleRow>
             </FlexColumn>
     )
 }

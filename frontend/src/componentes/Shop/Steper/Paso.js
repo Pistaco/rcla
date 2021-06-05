@@ -5,15 +5,22 @@ const PasoStyle = styled.div`
     grid-column: 1 / 2;
     display: grid;
     grid-template-rows: auto auto;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr auto;
+    @media (max-width: 800px) {
+      grid-template-columns:  1fr;
+    }
+    
 `
 
 const Letras = styled.div`
     font-size: 10rem;
+    @media (max-width: 800px) {
+      font-size: 7rem;
+    }
 `
 const Escojer = styled.div`
-    margin-top: -50px;
-    font-size: 6rem;
+    // margin-top: -50px;
+   font-size: 6rem;
     color: #006736;
 `
 
@@ -27,13 +34,19 @@ const StyleButton = styled.div`
     }
 `
 
-const Paso = () => (
+const pasosNombres = {
+    "1": "Verificar",
+    "2": "Direccion",
+    "3": "Pagar",
+    "4": "Enviar",
+}
+const Paso = ({paso}) => (
     <PasoStyle>
             <StyleButton>
                     <CarritoBtn/>
             </StyleButton>
-            <Letras>PASO 1</Letras>
-            <Escojer>Escojer</Escojer>
+            <Letras>PASO {paso}</Letras>
+            <Escojer>{ pasosNombres[paso] }</Escojer>
     </PasoStyle>
 )
 

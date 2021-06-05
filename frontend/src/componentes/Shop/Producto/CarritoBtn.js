@@ -5,8 +5,8 @@ import {ContextMethods} from "../Carrito";
 import styled from "styled-components";
 
 const StyleButton = styled.button`
-    width: 4vw;
-    height: 4vw;
+    width: 80px; 
+    height: 80px;
     background-color: red;
     color: white;
     border-radius: 100%;

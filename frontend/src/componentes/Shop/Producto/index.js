@@ -12,6 +12,12 @@ const StyleProducto = styled.div`
     grid-template-rows: 2.5fr 1fr;
     width: 15%;
     height: 40vh;
+    
+    @media (max-width: 800px) {
+      width: auto;
+      height: auto;
+      margin-bottom: 30px;
+    }
 `
 
 const Content = styled.div`

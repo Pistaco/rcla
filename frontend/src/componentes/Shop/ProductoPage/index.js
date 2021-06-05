@@ -12,6 +12,12 @@ const Style = styled.div`
     grid-template-columns: 1fr .2fr 1fr;
     margin: 5rem 2rem;
     height: 80vh;
+    
+    @media (max-width: 800px) {
+      grid-template-rows: 1fr auto 1fr;
+      grid-template-columns: 1fr;
+      height: auto;
+    }
 `
 
 const TextZoneBottom = styled.div`
@@ -25,12 +31,22 @@ const TextZoneBottom = styled.div`
       margin-bottom: 30px;
       font-size: 4rem;
     }
+  
+    @media (max-width: 800px) {
+      grid-row: 3 / 4;
+      grid-column: auto / auto;
+    }
 `
 
 const Titulo = styled.div`
     grid-column: 3 / 4;
     font-size: 8rem;
     margin-top: 20px;
+    
+    @media (max-width: 800px) {
+      grid-row: 2 / 3;
+      grid-column: auto / auto;
+    }
 `
 const Precio = styled.div`
     font-size: 2rem;
@@ -51,6 +67,11 @@ const Img = styled.div`
     width: 40vw;
     align-self: center;
     justify-self: center;
+    
+    @media (max-width: 800px) {
+      grid-row: 1 / span 1;
+      width: 90%;
+    }
 `
 
 
@@ -70,7 +91,6 @@ const StyleB = styled(FlexCenter)`
 const PageProducto = () => {
     const [data, setData] = useState({})
     let {id} = useParams()
-
     const handlerData = () => requestData()
         .then(setData)
         .catch(console.log)
@@ -92,7 +112,7 @@ const TextoZone = ({data}) => (
     <>
         <Titulo>
             <p>
-                {data.nombre} Producto
+                {data.nombre}
             </p>
         </Titulo>
         <TextZoneBottom>

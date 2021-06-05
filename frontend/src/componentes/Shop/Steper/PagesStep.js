@@ -2,6 +2,9 @@ import CarritoStep from "../Carrito/CarritoStep";
 import styled from "styled-components";
 
 const Style = styled.div`
+    display: grid;
+    grid-row: 3 / 4;
+    grid-column: 1/ 3;
 `
 
 const PagesStep = ({step}) => {
@@ -17,4 +20,8 @@ const PagesStep = ({step}) => {
     }
 }
 
-export default ({step}) => <PagesStep step={step}/>
+export default ({step}) => (
+    <Style>
+        <PagesStep step={step}/>
+    </Style>
+)

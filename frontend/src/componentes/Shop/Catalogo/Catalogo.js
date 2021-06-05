@@ -6,7 +6,7 @@ import {FlexCenter} from "../../reusable-styled/flexConteiners";
 
 const CategoriaActual = styled(FlexCenter)`
     font-size: 2rem;
-    height: 2.5vw;
+    height: 50px;
     background-color: #F5C646;
 `
 

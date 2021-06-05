@@ -17,12 +17,19 @@ const StyleSteper = styled.div`
     margin: 30px 0;
     border-radius: 50px;
     background-color: #D8D8D8;
+  
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto 1fr;
+      min-height: 150vh;
+    }
+  
 `
 const Steper = () => {
     const [activeStep, setActiveStep] = useState(1)
     return <FlexCenter>
         <StyleSteper>
-            <Paso/>
+            <Paso paso={activeStep}/>
             <SetDeBotones setActiveStep={setActiveStep}/>
             <PagesStep step={activeStep}/>
         </StyleSteper>
