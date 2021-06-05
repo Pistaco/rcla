@@ -1,4 +1,5 @@
 import CarritoStep from "../Carrito/CarritoStep";
+import PasoDireccion from "./Pasos/Paso2";
 import styled from "styled-components";
 
 const Style = styled.div`
@@ -12,7 +13,7 @@ const PagesStep = ({step}) => {
         case 1:
             return <CarritoStep/>
         case 2:
-            return "2"
+            return <PasoDireccion/>
         case 3:
             return "3"
         case 4:

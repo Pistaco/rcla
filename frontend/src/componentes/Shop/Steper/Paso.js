@@ -19,7 +19,6 @@ const Letras = styled.div`
     }
 `
 const Escojer = styled.div`
-    // margin-top: -50px;
    font-size: 6rem;
     color: #006736;
 `

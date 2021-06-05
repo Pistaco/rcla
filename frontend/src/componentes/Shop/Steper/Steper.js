@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import PagesStep from "./PagesStep";
 import SetDeBotones from "./SetDeBotones";
+import BotonContinuar from "./BotonContinuar";
 import {FlexCenter} from "../../reusable-styled/flexConteiners";
 import Paso from "./Paso";
 
@@ -20,18 +21,20 @@ const StyleSteper = styled.div`
   
     @media (max-width: 800px) {
       grid-template-columns: 1fr;
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto auto 1fr auto;
       min-height: 150vh;
     }
   
 `
 const Steper = () => {
     const [activeStep, setActiveStep] = useState(1)
+    const continuar = () => setActiveStep(value => value < 4 ? value + 1 : value)
     return <FlexCenter>
         <StyleSteper>
             <Paso paso={activeStep}/>
-            <SetDeBotones setActiveStep={setActiveStep}/>
+            <SetDeBotones paso={activeStep} setActiveStep={setActiveStep}/>
             <PagesStep step={activeStep}/>
+            <BotonContinuar onClick={continuar}/>
         </StyleSteper>
     </FlexCenter>
 }
