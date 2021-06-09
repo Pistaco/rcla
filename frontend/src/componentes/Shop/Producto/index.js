@@ -4,8 +4,9 @@ import {useContext} from "react";
 
 import {ContextMethods} from "../Carrito";
 import {Link} from "react-router-dom";
-import CarritoBtn from "./CarritoBtn";
+import {BtnAlertWithCarrito} from "../AlertProvider";
 import {FlexCenter, FlexRow} from "../../reusable-styled/flexConteiners";
+import CarritoBtnFuncional from "../Carrito/CarritoBtnFuncional";
 
 const StyleProducto = styled.div`
     display: grid;
@@ -38,14 +39,12 @@ const Precios = styled.div`
 
 `
 
-
-const Producto = ({producto, id}) => {
-    const {addToCarrito} = useContext(ContextMethods)
-    return (
+const Producto = ({producto, id}) =>
+    (
         <StyleProducto id={id}>
             <Content>
                 <Link to={`/Producto/${id}`}>
-                    <img style={{width: "100%"}} src={imageProducto} alt={"dummy"}/>
+                    <img style={{width: "100%"}} src={producto.img} alt={"dummy"}/>
                 </Link>
             </Content>
             <PrecioSpace>
@@ -56,11 +55,11 @@ const Producto = ({producto, id}) => {
                     </Precios>
                 </div>
                 <FlexCenter style={{width: "60%"}}>
-                    <CarritoBtn onClick={() => addToCarrito(producto)}/>
+                    <CarritoBtnFuncional data={producto}/>
                 </FlexCenter>
             </PrecioSpace>
         </StyleProducto>
     )
-}
+
 
 export default Producto

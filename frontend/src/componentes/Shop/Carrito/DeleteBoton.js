@@ -7,7 +7,7 @@ const Style = styled.button`
     background-color: transparent;
     border: transparent;
 `
-const DeleteBoton = ({onClick}) => <Style>
-    <FontAwesomeIcon onClick={onClick}  icon={faBackspace}/>
+const DeleteBoton = ({onClick}) => <Style onClick={onClick}>
+    <FontAwesomeIcon   icon={faBackspace}/>
 </Style>
 export default DeleteBoton

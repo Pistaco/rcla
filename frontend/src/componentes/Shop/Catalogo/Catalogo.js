@@ -5,9 +5,11 @@ import CatalogoGeneral from "./CatalogoGeneral";
 import {FlexCenter} from "../../reusable-styled/flexConteiners";
 
 const CategoriaActual = styled(FlexCenter)`
-    font-size: 2rem;
-    height: 50px;
-    background-color: #F5C646;
+  font-size: 2rem;
+  font-family: The-next-font, serif ;
+  font-weight: bold;
+  height: 50px;
+  background-color: #F5C646;
 `
 
 const Catalogo = () => {

@@ -25,11 +25,11 @@ const StyleCategoria = styled(FlexRowSpacedEvenly)`
 
 export const CategoriasJsx = ({data}) => {
 
-    const mapData = () => maperObject(data, (key, value) => (
-        <Item data={value}>{key}</Item>
+    const mapData = () => maperObject(data, (key, value, index) => (
+        <Item key={index} data={value}>{key}</Item>
     ))
 
-    const maperObject = (object, funcion) => Object.entries(object).map(([key, value]) => funcion(key, value))
+    const maperObject = (object, funcion) => Object.entries(object).map(([key, value], index) => funcion(key, value, index))
 
     return (
     <StyleCategoria>

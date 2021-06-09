@@ -20,8 +20,8 @@ const style = {
     height: pixel
 }
 
-const CarritoBtn = ({onClick}) => <StyleButton>
-    <FontAwesomeIcon  style={style} onClick={onClick}  icon={faShoppingCart}/>
+const CarritoBtn = ({onClick}) => <StyleButton onClick={onClick} data-testid="Click me">
+    <FontAwesomeIcon  style={style}   icon={faShoppingCart}/>
 </StyleButton>
 
 
