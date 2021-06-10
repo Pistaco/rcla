@@ -23,7 +23,6 @@ def consultar_api():
 
 
 def generar_json():
-    imagen = Image.open("dommy/default-image-620x600.jpg")
     return {
         "nombre": "TARRO",
         "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ",
