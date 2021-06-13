@@ -25,5 +25,6 @@ urlpatterns = [
     path("auth/", include("djoser.urls")),
     path("auth/", include("djoser.urls.authtoken")),
     path("payout/", include("payout.urls")),
-    path("mail/", include("mail.urls"))
+    path("mail/", include("mail.urls")),
+    path("pedidos/", include("pedidos.urls")),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

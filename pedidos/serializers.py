@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Pedidos, Comprador, Direccion
+from .models import Pedido, Comprador, Direccion
 
 
 class CompradorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comprador
-        exclude = "__all__"
+        fields = "__all__"
 
 
 class DireccionSerializer(serializers.ModelSerializer):
@@ -15,11 +15,24 @@ class DireccionSerializer(serializers.ModelSerializer):
 
 
 class PedidoSerializer(serializers.ModelSerializer):
-    comprador = CompradorSerializer(read_only=True)
-    direccion = DireccionSerializer(read_only=True)
+    comprador = CompradorSerializer()
+    direccion = DireccionSerializer()
 
     class Meta:
-        model = Pedidos
+        model = Pedido
         fields = "__all__"
+
+    def create(self, validated_data):
+        comprador_data = validated_data.pop("comprador")
+        direccion_data = validated_data.pop("direccion")
+        comprador = Comprador(**comprador_data)
+        direccion = Direccion(**direccion_data)
+
+        comprador.save()
+        direccion.save()
+        pedido = Pedido(**validated_data, comprador=comprador, direccion=direccion)
+        pedido.save()
+
+        return pedido
 
 #("codigo",)

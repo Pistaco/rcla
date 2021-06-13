@@ -1,6 +1,8 @@
 from django.test import TestCase
-from .models import Pedidos, Comprador, Direccion
+from .models import Pedido, Comprador, Direccion
 from .serializers import PedidoSerializer, CompradorSerializer, DireccionSerializer
+
+from .generator_code import generator_code
 
 
 def print_from_pedido_serializer(objeto):
@@ -12,7 +14,7 @@ class SerializerTest(TestCase):
     def build(self):
         self.comprador = Comprador(nombre="Helo", correo="ihelocarraco", numero="569799")
         self.direccion = Direccion(calle_numero=100, calle="Los canijos")
-        self.pedido = Pedidos(codigo="ashdjad", comprador=self.comprador, direccion=self.direccion)
+        self.pedido = Pedido(codigo="ashdjad", comprador=self.comprador, direccion=self.direccion)
 
     def save_objects(self):
         self.comprador.save()
@@ -25,7 +27,6 @@ class SerializerTest(TestCase):
     def test_serializer(self):
         self.build()
         self.save_objects()
-        print_from_pedido_serializer(self.pedido)
 
 
 objeto_test = {
@@ -45,6 +46,7 @@ objeto_test = {
 
 
 class DeserializerTest(TestCase):
+
     def test_direccion(self):
         objeto = DireccionSerializer(data=objeto_test["direccion"])
         objeto.is_valid()
@@ -59,6 +61,23 @@ class DeserializerTest(TestCase):
         objeto = PedidoSerializer(data=objeto_test)
         objeto.is_valid()
         objeto.save()
+
+
+class CodeGenerator(TestCase):
+
+
+    def test_genetor_code(self):
+        code = generator_code()
+        print(code)
+
+    def test_implementation(self):
+        copy_data_test = objeto_test.copy()
+        copy_data_test.pop("codigo")
+        objeto = PedidoSerializer(data=copy_data_test)
+        objeto.is_valid()
+        pedido = objeto.save()
+        self.assertTrue(pedido.codigo)
+
 
 
 

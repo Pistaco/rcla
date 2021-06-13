@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib import admin
 
 
 class Categoria(models.Model):
@@ -21,6 +20,4 @@ class Producto(models.Model):
         return self.nombre
 
 
-admin.site.register(Categoria)
-admin.site.register(Producto)
 # Create your models here.
