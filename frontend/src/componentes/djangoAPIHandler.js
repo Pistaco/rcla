@@ -7,6 +7,7 @@ class djangoAPIHandler {
         this.productos = new ProductosAPIHandler()
         this.auth =  new AuthTokenHandler()
         this.categorias = new CategoriaHandler()
+        this.pedidoProcess = new PedidosProcessHandler()
     }
 }
 
@@ -54,6 +55,19 @@ class AuthTokenHandler {
     }
 }
 
+class PedidosProcessHandler {
+    constructor() {
+        this.mail = new EmailHandler()
+        this.pedidos = new PedidosDataBaseHandler()
+    }
+
+    async doProcess(data) {
+        const {direccion: {correo}} = data
+        await this.mail.sendMail(correo)
+        return await this.pedidos.createPedido(data)
+    }
+}
+
 class CategoriaHandler {
     constructor() {
         this.path_create = "/api/categoria-create"
@@ -67,6 +81,32 @@ class CategoriaHandler {
     getProductosByCategoria(data) {
         const url = `/api/categoria-search/${data}`
         return genericGet(url)
+    }
+}
+
+class PedidosDataBaseHandler {
+    constructor() {
+        this.path_all = `/pedidos/list-pedidos/`
+        this.create = `/pedidos/create`
+    }
+
+    createPedido(data) {
+        const sendPedidoToDjango = genericPost(this.create)
+        return sendPedidoToDjango(data)
+    }
+
+    allPedidos() {
+        return genericGet(this.path_all)
+    }
+}
+
+class EmailHandler {
+    constructor() {
+        this.path_send = "/mail/"
+    }
+    sendMail(data) {
+        const sendEmailToDjango = genericPost(this.path_send)
+        return sendEmailToDjango(data)
     }
 }
 

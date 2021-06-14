@@ -1,5 +1,5 @@
 import CarritoStep from "../Carrito/CarritoStep";
-import PasoDireccion from "./Pasos/Paso2";
+import PasoDireccion from "./Pasos/Paso2/index";
 import styled from "styled-components";
 
 const Style = styled.div`

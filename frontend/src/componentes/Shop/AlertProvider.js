@@ -1,7 +1,6 @@
 import {createContext, useContext, useState} from "react";
-import AlertUI from "@material-ui/lab/Alert";
-import styled from "styled-components";
-import {Fade} from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import {Snackbar} from "@material-ui/core";
 import CarritoBtn from "./Producto/CarritoBtn";
 
 export const Context = createContext()
@@ -16,30 +15,17 @@ export const BtnAlertWithCarrito = ({onClick}) => {
     )
 }
 
-const Alert =  styled(AlertUI)`
-    position: fixed;
-    width: 70%;
-    bottom: 10px;
-    right: 0;
-    left: 0;
-    margin: auto;
-`
-
 const AlertProvider = props => {
     const [alert, setAlert] = useState(false)
-    const change = () => {
-        if (alert === false) {
-            setAlert(true)
-            setTimeout(() => setAlert(false), 1500)
-        }
-    }
+    const change = () => setAlert(true)
+    const onClose = () => setAlert(false)
 
     return (
         <Context.Provider value={change}>
             { props.children }
-            <Fade in={alert}>
+            <Snackbar open={alert} autoHideDuration={1000} onClose={onClose}>
                 <Alert>Agregado al carrito</Alert>
-            </Fade>
+            </Snackbar>
         </Context.Provider>
     )
 }
