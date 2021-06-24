@@ -1,8 +1,9 @@
 from django.test import TestCase
-from .models import Pedido, Comprador, Direccion
 from .serializers import PedidoSerializer, CompradorSerializer, DireccionSerializer
 
 from .generator_code import generator_code
+from .mocks import objeto_test
+from .builders import build_pedido_with_data
 
 
 def print_from_pedido_serializer(objeto):
@@ -10,11 +11,11 @@ def print_from_pedido_serializer(objeto):
     print(data_serializer.data)
 
 
+
+
 class SerializerTest(TestCase):
     def build(self):
-        self.comprador = Comprador(nombre="Helo", correo="ihelocarraco", numero="569799")
-        self.direccion = Direccion(calle_numero=100, calle="Los canijos")
-        self.pedido = Pedido(codigo="ashdjad", comprador=self.comprador, direccion=self.direccion)
+        self.pedido, self.direccion, self.comprador = build_pedido_with_data()
 
     def save_objects(self):
         self.comprador.save()
@@ -29,20 +30,10 @@ class SerializerTest(TestCase):
         self.save_objects()
 
 
-objeto_test = {
-    "direccion": {
-        "calle": "33",
-        "calle_numero": 100,
-        "descripcion": "u good"
-    },
-    "comprador": {
-        "nombre": "HI",
-        "correo": "ihelocarraco",
-        "numero": "899009"
-    },
-    "codigo": "aaa",
-    "fecha": "aaaaaa"
-}
+def crear_data():
+    copy_data_test = objeto_test.copy()
+    copy_data_test.pop("codigo")
+    return copy_data_test
 
 
 class DeserializerTest(TestCase):
@@ -58,29 +49,27 @@ class DeserializerTest(TestCase):
         objeto.save()
 
     def test_all(self):
-        objeto = PedidoSerializer(data=objeto_test)
+        objeto_with_list = {**objeto_test, "pedido_productos": []}
+        objeto = PedidoSerializer(data=objeto_with_list)
         objeto.is_valid()
         objeto.save()
 
 
 class CodeGenerator(TestCase):
 
-
     def test_genetor_code(self):
         code = generator_code()
         print(code)
 
     def test_implementation(self):
-        copy_data_test = objeto_test.copy()
-        copy_data_test.pop("codigo")
-        objeto = PedidoSerializer(data=copy_data_test)
-        objeto.is_valid()
-        pedido = objeto.save()
+        pedido, *rest = build_pedido_with_data()
         self.assertTrue(pedido.codigo)
 
 
+class ImplementacionMethods(TestCase):
 
-
-
-
-
+    def test_field_entregado(self):
+        pedido, *rest = build_pedido_with_data()
+        self.assertFalse(pedido.entregado)
+        pedido.change_entregado_field()
+        self.assertTrue(pedido.entregado)

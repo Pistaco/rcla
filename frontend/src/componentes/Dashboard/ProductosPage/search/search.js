@@ -17,7 +17,7 @@ const SearchBox = ({setLista, requestApi}) => {
     }
 
     const getDataFromBackEnd = () => {
-        const request = djangoAPIHandler.productos.searchProducto(input)
+        const request = requestApi(input)
         request
             .then(value => setLista(value))
     }

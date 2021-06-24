@@ -8,6 +8,7 @@ import CrearPage from "./CrearPage/CrearPage";
 import ProductosPage from "./ProductosPage/ProductosPage"
 import Login from "./login/Login";
 import Logout from "./Logout"
+import PedidosPage from "./PedidosPage";
 
 const Dashboard = () => {
     const [token, setToken] = useState("")
@@ -26,6 +27,9 @@ const Dashboard = () => {
 
                 <Route path="/dashboard/productos">
                     <ProductosPage/>
+                </Route>
+                <Route path="/dashboard/pedidos">
+                    <PedidosPage/>
                 </Route>
                 <Logout setToken={setToken}/>
             </div>

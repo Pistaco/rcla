@@ -2,9 +2,7 @@ import {useState} from "react";
 import FormJsxStep2 from "./FormJsxStep2";
 
 const FormStep2 = ({openAlert}) => {
-    const [direccion, direccionSet] = useState({
-        nombre: "1"
-    })
+    const [direccion, direccionSet] = useState({})
     const [comprador, compradorSet] = useState({})
 
     const generalSetter = funcion => props => funcion(value => ({

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PayoutConfig(AppConfig):
+class PedidoProductosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'payout'
+    name = 'pedidos.pedido_productos'

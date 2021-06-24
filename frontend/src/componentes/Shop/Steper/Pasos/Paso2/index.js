@@ -26,7 +26,7 @@ const PasoDireccion = () => {
         }
         <Snackbar onClose={onClose} open={open}>
             <Alert>
-                AA
+                Direccion guardada!
             </Alert>
         </Snackbar>
     </>

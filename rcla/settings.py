@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "productos",
     "pedidos",
-    "mail",
+    "pedidos.pedido_productos",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

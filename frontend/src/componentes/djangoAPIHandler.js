@@ -7,7 +7,7 @@ class djangoAPIHandler {
         this.productos = new ProductosAPIHandler()
         this.auth =  new AuthTokenHandler()
         this.categorias = new CategoriaHandler()
-        this.pedidoProcess = new PedidosProcessHandler()
+        this.pedidoProcess = new PedidosDataBaseHandler()
     }
 }
 
@@ -55,18 +55,6 @@ class AuthTokenHandler {
     }
 }
 
-class PedidosProcessHandler {
-    constructor() {
-        this.mail = new EmailHandler()
-        this.pedidos = new PedidosDataBaseHandler()
-    }
-
-    async doProcess(data) {
-        const {direccion: {correo}} = data
-        await this.mail.sendMail(correo)
-        return await this.pedidos.createPedido(data)
-    }
-}
 
 class CategoriaHandler {
     constructor() {
@@ -87,7 +75,8 @@ class CategoriaHandler {
 class PedidosDataBaseHandler {
     constructor() {
         this.path_all = `/pedidos/list-pedidos/`
-        this.create = `/pedidos/create`
+        this.create = `/pedidos/create/`
+        this.check_url = pk => `/pedidos/check/${pk}`
     }
 
     createPedido(data) {
@@ -95,20 +84,17 @@ class PedidosDataBaseHandler {
         return sendPedidoToDjango(data)
     }
 
+    check(pk) {
+        const url = this.check_url(pk)
+        const sendCheck = genericPost(url)
+        return sendCheck("")
+    }
+
     allPedidos() {
         return genericGet(this.path_all)
     }
 }
 
-class EmailHandler {
-    constructor() {
-        this.path_send = "/mail/"
-    }
-    sendMail(data) {
-        const sendEmailToDjango = genericPost(this.path_send)
-        return sendEmailToDjango(data)
-    }
-}
 
 const createForm = data => {
     const datosToDjangoForm = new FormData
