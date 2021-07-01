@@ -22,20 +22,49 @@ class PedidoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pedido
-        fields = ("codigo", "fecha", "comprador", "direccion", "entregado", "pedido_productos")
+        fields = "__all__"
 
     def create(self, validated_data):
-        comprador_data = validated_data.pop("comprador")
-        direccion_data = validated_data.pop("direccion")
-        pedido_productos_data = validated_data.pop("pedido_productos")
-        comprador = Comprador(**comprador_data)
-        direccion = Direccion(**direccion_data)
+        def extract_from_validated(key):
+            return validated_data.pop(key)
 
-        comprador.save()
-        direccion.save()
-        pedido = Pedido(**validated_data, comprador=comprador, direccion=direccion)
+        def handel_model_object(modelo, key):
+            objeto = modelo(**extract_from_validated(key))
+            objeto.save()
+            return objeto
+
+        pedidos_productos = extract_from_validated("pedido_productos")
+        pedido = Pedido(
+            **validated_data,
+            comprador=handel_model_object(Comprador, "comprador"),
+            direccion=handel_model_object(Direccion, "direccion")
+        )
         pedido.save()
-
+        PedidoProductoSerializer.safe_pedidos(pedidos_productos, pedido)
         return pedido
 
 
+class TestPedidoSerializer(serializers.ModelSerializer):
+    comprador = CompradorSerializer()
+    direccion = DireccionSerializer()
+
+    class Meta:
+        model = Pedido
+        fields = "__all__"
+
+    def create(self, validated_data):
+        def extract_from_validated(key):
+            return validated_data.pop(key)
+
+        def handel_model_object(modelo, key):
+            objeto = modelo(**extract_from_validated(key))
+            objeto.save()
+            return objeto
+
+        pedido = Pedido(
+            **validated_data,
+            comprador=handel_model_object(Comprador, "comprador"),
+            direccion=handel_model_object(Direccion, "direccion")
+        )
+        pedido.save()
+        return pedido

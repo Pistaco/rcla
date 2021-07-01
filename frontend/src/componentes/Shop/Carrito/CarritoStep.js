@@ -13,7 +13,7 @@ const StyleCarrito = styled.div`
 
 const CarritoStep = () => {
     const data = useContext(ContextData)
-    const calcularTotal = () => data.reduce((dinero, value) => + dinero + (value.precio * value.cantidad) , 0)
+    const calcularTotal = () => data.reduce((dinero, value) => + dinero + (value.producto.precio * value.cantidad) , 0)
     return (
         <StyleCarrito>
             <Precio precio={calcularTotal()}/>

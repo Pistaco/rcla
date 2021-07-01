@@ -3,23 +3,15 @@ import SearchBox from "./search/search";
 import {useState} from "react";
 import djangoAPIHandler from "../../djangoAPIHandler";
 
-export const GeneralPage = ({requestApi, lista, SetLista}) => {
-    return(
-        <>
-            <SearchBox requestApi={requestApi}  setLista={SetLista} />
-            <Table  lista={lista} SetLista={SetLista}/>
-        </>
-    )
-}
 
 const ProductosPage = () => {
     const [lista, SetLista] = useState([])
-    const requestApi = () => djangoAPIHandler.productos.allProductos().then(SetLista)
-    return <GeneralPage
-        lista={lista}
-        SetLista={SetLista}
-        requestApi={requestApi}
-    />
+    const requestApi = input => djangoAPIHandler.productos.searchProducto(input)
+    const funcionAllDjango = () => djangoAPIHandler.productos.allProductos()
+    return <>
+        <SearchBox funcionOfDjango={requestApi} setLista={SetLista} funcionAlldjango={funcionAllDjango}/>
+        <Table lista={lista} SetLista={SetLista}/>
+    </>
 }
 
 export default ProductosPage

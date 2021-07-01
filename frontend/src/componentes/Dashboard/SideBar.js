@@ -2,8 +2,15 @@ import styled from "styled-components";
 import {FlexCenter, FlexColumn } from "../reusable-styled/flexConteiners";
 import {Link} from "react-router-dom"
 
+const width = 30
+const Box = styled.div`
+  width: ${width + 15}%;
+  height: 100vh;
+`
+
 const StyleBar = styled(FlexColumn)`
-  width: 30vw;
+  position: fixed;
+  width: ${width}%;
   height: 100vh;
   background-color: #001f54;
 `
@@ -24,10 +31,13 @@ const Item = props => (
 )
 
 
-const SideBar = () => <StyleBar>
-    <Item url="crear">Crear</Item>
-    <Item url="productos">Productos</Item>
-    <Item url="pedidos">Pedidos</Item>
-</StyleBar>
+const SideBar = () => <>
+    <Box/>
+    <StyleBar>
+        <Item url="crear">Crear</Item>
+        <Item url="productos">Productos</Item>
+        <Item url="pedidos">Pedidos</Item>
+    </StyleBar>
+    </>
 
 export default SideBar

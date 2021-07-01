@@ -51,7 +51,8 @@ class DeserializerTest(TestCase):
     def test_all(self):
         objeto_with_list = {**objeto_test, "pedido_productos": []}
         objeto = PedidoSerializer(data=objeto_with_list)
-        objeto.is_valid()
+        if not objeto.is_valid():
+            print(objeto.errors)
         objeto.save()
 
 

@@ -14,15 +14,15 @@ const Item = styled(FlexCenter)`
 `
 
 export const Row = ({data}) => {
-    const calcularPrecio = () => data.precio * data.cantidad
+    const calcularPrecio = () => data.producto.precio * data.cantidad
     const {deleteFromCart} = useContext(ContextMethods)
     return (
         <StyleRow>
             <Item first>
-                {data.nombre}
+                {data.producto.nombre}
             </Item>
             <Item>
-                {data.precio}
+                {data.producto.precio}
             </Item>
             <Item>
                 {data.cantidad}
@@ -30,7 +30,7 @@ export const Row = ({data}) => {
             <Item>
                 {calcularPrecio()}
             </Item>
-            <Item><DeleteBoton onClick={() => deleteFromCart(data)}>Delete</DeleteBoton></Item>
+            <Item><DeleteBoton onClick={() => deleteFromCart(data.producto)}>Delete</DeleteBoton></Item>
         </StyleRow>
     )
 }

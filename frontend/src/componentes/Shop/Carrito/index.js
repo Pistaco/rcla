@@ -7,9 +7,9 @@ const CarritoProvider = ({children}) => {
     const [carritoData, setCarritoData] = useState([])
 
     const listaManager =  {
-        checkIfExist: id => carritoData.some(value => value.id === id),
-        add: producto => setCarritoData([...carritoData, {...producto, cantidad: 1}]),
-        delete: producto => setCarritoData(carritoData.filter(value => value.id !== producto.id))
+        checkIfExist: id => carritoData.some(value => value.producto.id === id),
+        add: producto => setCarritoData([...carritoData, {producto, cantidad: 1}]),
+        delete: producto => setCarritoData(carritoData.filter(value => value.producto.id !== producto.id))
     }
 
 
@@ -18,20 +18,20 @@ const CarritoProvider = ({children}) => {
         listaManager.add(producto)
 
     const deleteFromCart = producto => checkIfCantidadEqual1(producto.id) ?
-        listaManager.delete(producto)
-        : reduceList(producto)
+        listaManager.delete(producto):
+        reduceList(producto)
 
     const sumProductoInList = producto => setCarritoData(findAproductInListAndDo(sumCantidadProperty(1))(producto))
 
     const findAproductInListAndDo = funcion => producto => carritoData.map(value =>
-        value.id === producto.id ?
+        value.producto.id === producto.id ?
             funcion(value) :
             value
     )
 
 
     const reduceList = producto => setCarritoData((findAproductInListAndDo(sumCantidadProperty(-1))(producto) ))
-    const checkIfCantidadEqual1 = id => carritoData.some(value => value.id === id ? value.cantidad === 1: false)
+    const checkIfCantidadEqual1 = id => carritoData.some(value => value.producto.id === id ? value.cantidad === 1: false)
 
 
     const sumCantidadProperty = numero => producto => ({

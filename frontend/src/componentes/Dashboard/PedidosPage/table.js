@@ -1,22 +1,35 @@
 import Row from "./Row";
-import Input from "./Input"
-const Table = ({lista, refreshTable}) => (
-    <table className="table">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Numero</th>
-            <th>Correo</th>
-            <th>Calle</th>
-            <th>Fecha compra</th>
-            <th>Entregado</th>
-            <th>Codigo</th>
-        </tr>
-        </thead>
-        <tbody>
-            {lista.map((value, index) => <Row value={value} key={index}/>)}
-        </tbody>
-    </table>
-)
+import {
+    Table,
+    TableCell,
+    TableHead,
+    TableRow,
+    TableBody,
+} from "@material-ui/core";
 
-export default Table
+import {useState} from "react";
+
+const ATable = ({lista, refreshTable}) => {
+    const [page, setPage] = useState()
+
+    return (
+                    <Table >
+                        <TableHead >
+                            <TableRow >
+                                <TableCell><p>Nombre</p></TableCell>
+                                <TableCell><p>Numero</p></TableCell>
+                                <TableCell><p>Correo</p></TableCell>
+                                <TableCell><p>Calle</p></TableCell>
+                                <TableCell><p>Fecha compra</p> </TableCell>
+                                <TableCell><p>Entregado</p></TableCell>
+                                <TableCell><p>Codigo</p></TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {lista.map((value, index) => <Row value={value} key={index}/> )}
+                        </TableBody>
+                        </Table>
+    )
+}
+
+export default ATable

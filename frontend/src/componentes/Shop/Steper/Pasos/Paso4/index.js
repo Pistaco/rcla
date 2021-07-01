@@ -8,24 +8,26 @@ const tracer = value => {
     return value
 }
 
-const KEY_OBJECT_CARRITO = "carrito_productos"
+const KEY_OBJECT_CARRITO = "pedido_productos"
 
 const ConfirmadoCompra = () => {
     const [codigo, setCodigo] = useState("Cargando...")
     const carritoData = useContext(ContextData)
 
     const codigoProcess = () => {
-        requestDjangoProcess(createData())
+        requestDjangoProcess(createDataApi())
             .then(setCodigo)
             .catch(console.log)
     }
 
+
     const getLocalData = () => JSON.parse(localStorage.getItem("formData"))
-    const createData = () => ({...getLocalData(), [KEY_OBJECT_CARRITO]: carritoData})
+    const createDataApi = () => ({...getLocalData(), [KEY_OBJECT_CARRITO]: carritoData})
 
 
     const requestDjangoProcess = data => djangoAPIHandler.pedidoProcess.createPedido(data)
 
+    useEffect(() => console.log(carritoData))
     useEffect(codigoProcess, [])
 
     return <WraperWhite>

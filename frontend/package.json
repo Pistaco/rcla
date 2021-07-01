@@ -24,6 +24,8 @@
     "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-virtualized": "^9.22.3",
+    "react-window": "^1.8.6",
     "styled-components": "^5.3.0",
     "web-vitals": "^1.1.2"
   },
@@ -51,5 +53,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "@material-ui/data-grid": "^4.0.0-alpha.32"
+  }
 }

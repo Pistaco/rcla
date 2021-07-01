@@ -7,21 +7,12 @@ const PedidosPage = () => {
     const [lista, setLista] = useState([])
 
     const djangoRequest = () => djangoAPIHandler.pedidoProcess.allPedidos()
-
-    const refresTable = () => {
-        djangoRequest()
-            .then(setLista)
-            .catch()
-    }
-
-    useEffect(refresTable, [])
+    const djangoSearch = input => djangoAPIHandler.pedidoProcess.search(input)
 
 
-   return <>
-       <Table
-           lista={lista}
-           refreshTable={refresTable}
-       />
+    return <>
+        <SearchBox funcionAlldjango={djangoRequest} setLista={setLista} funcionOfDjango={djangoSearch}/>
+        <Table lista={lista}/>
     </>
 }
 

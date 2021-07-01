@@ -93,6 +93,11 @@ class PedidosDataBaseHandler {
     allPedidos() {
         return genericGet(this.path_all)
     }
+
+    search(input) {
+        const url = `/pedidos/search/${input}`
+        return genericGet(url)
+    }
 }
 
 

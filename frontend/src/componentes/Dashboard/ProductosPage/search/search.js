@@ -3,23 +3,23 @@ import react, {useEffect, useState} from "react";
 
 import djangoAPIHandler from "../../../djangoAPIHandler";
 
-const SearchBox = ({setLista, requestApi}) => {
+const SearchBox = ({setLista, funcionOfDjango, funcionAlldjango}) => {
 
     const [input, setInput] = useState()
     const onChange = props => setInput(props.target.value)
 
     const refreshTable = () => {
         if(checkIfWhiteSpace()) {
-            requestApi()
-        } else {
+            funcionAlldjango().then(setLista)
+        }
+        else {
             getDataFromBackEnd()
         }
     }
 
     const getDataFromBackEnd = () => {
-        const request = requestApi(input)
-        request
-            .then(value => setLista(value))
+        funcionOfDjango(input)
+            .then(setLista)
     }
 
     const checkIfWhiteSpace = () => input === "" || input === undefined

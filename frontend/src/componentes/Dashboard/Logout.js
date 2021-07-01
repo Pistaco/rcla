@@ -2,10 +2,10 @@ import styled from "styled-components";
 import djangoAPIHandler from "../djangoAPIHandler";
 
 const StyledBoton = styled.input`
-  position: absolute;
+  position: fixed;
   width: 100px;
   bottom: 0;
-  right: 0;
+  left: 0;
   margin: 15px;
 `
 
