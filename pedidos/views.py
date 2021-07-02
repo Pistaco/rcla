@@ -4,8 +4,14 @@ from .serializers import PedidoSerializer
 from .models import Pedido
 
 
+def delete_images(data):
+    for pedido_producto in data["pedido_productos"]:
+        pedido_producto["producto"].pop("img")
+
+
 @api_view(["POST"])
 def create_pedido(request):
+    delete_images(request.data)
     serializer = PedidoSerializer(data=request.data)
     if serializer.is_valid():
         objeto_model = serializer.save()

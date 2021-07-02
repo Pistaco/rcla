@@ -4,9 +4,9 @@ import { FlexRowSpacedEvenly} from "../../../reusable-styled/flexConteiners";
 import {useEffect, useState} from "react";
 
 const data = {
-    "PC": ["GAMER", "NORMAL", "NUCLEAR"],
-    "PC1": ["GAMER", "NORMAL", "NUCLEAR"],
-    "PC2": ["GAMER", "NORMAL", "NUCLEAR"],
+    "PC": ["GAMER", "NORMAL", "ELECTRONICA"],
+    "PC1": ["GAMER", "NORMAL", "ELECTRONICA"],
+    "PC2": ["GAMER", "NORMAL", "ELECTRONICA"],
     "PC3": ["GAMER", "NORMAL", "sss"],
     "PC4": []
 }

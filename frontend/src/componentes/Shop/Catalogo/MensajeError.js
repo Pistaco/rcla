@@ -8,7 +8,7 @@ const Style = styled.div`
 `
 
 const MensajeError = () => <Style>
-    <h1>Estamos con dificultades</h1>
+    <h1>No se ha encontrado</h1>
 </Style>
 
 export default MensajeError

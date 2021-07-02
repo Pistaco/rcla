@@ -13,9 +13,9 @@ import PedidosPage from "./PedidosPage";
 const Dashboard = () => {
     const [token, setToken] = useState("")
 
-    // if(!token) {
-        // return <Login setToken={setToken}/>
-    // }
+    if(!token) {
+         return <Login setToken={setToken}/>
+    }
 
     return (
         <FlexRow>

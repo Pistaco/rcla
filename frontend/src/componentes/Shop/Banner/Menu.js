@@ -25,7 +25,6 @@ const StyledMenu = styled.div`
 
 
 const Menu = () => <StyledMenu>
-    <Navbar/>
     <CarritoIcon/>
     <SearchForShop/>
     <Logo/>

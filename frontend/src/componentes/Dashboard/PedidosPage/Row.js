@@ -32,7 +32,7 @@ const Row = ({value}) => {
                 {value.pedido_productos.length > 0 ?
                     <TableCell style={{margin: 0, padding: 0, border: 0}} colSpan={7}>
                         <Collapse  in={open}>
-                            <MiniTable value={value.pedido_productos}/>
+                            <MiniTable pedido_productos={value.pedido_productos}/>
                         </Collapse>
                     </TableCell>
                     : null}

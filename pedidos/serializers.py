@@ -25,6 +25,9 @@ class PedidoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def create(self, validated_data):
+        print("PRINT")
+        print(validated_data)
+
         def extract_from_validated(key):
             return validated_data.pop(key)
 
